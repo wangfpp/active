@@ -7,7 +7,8 @@ import 'iview/dist/styles/iview.css'
 import Home from '@/page/home/home';
 import Login from '@/page/login/login';
 import Register from '@/page/login/register';
-import PersonCenter from '@/page/personal/person_center.vue';
+import Main from '@/page/main/main';
+import PersonCenter from '@/page/personal/person_center';
 
 
 Vue.use(Router);
@@ -26,8 +27,8 @@ export default new Router({
         },
         {
             path: '/',
-            redirect: '/home',
-            component: Home,
+            component: Main,
+            redirect: 'home',
             children: [{
                     path: 'home',
                     name: 'home',

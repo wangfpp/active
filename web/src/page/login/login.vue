@@ -83,7 +83,7 @@ export default {
                         this.$store.state.userName = res.user.name;
                         this.$store.state.phoneNum = res.user.phone;
                         if (!res.user.name) {
-                            this.$router.push({path: '/home/personspace'});
+                            this.$router.push({path: '/personspace'});
                         } else {
                             this.$router.push({path: '/home'});
                         }

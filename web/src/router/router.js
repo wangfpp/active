@@ -25,7 +25,8 @@ export default new Router({
             component: Register
         },
         {
-            path: '/home',
+            path: '/',
+            redirect: '/home',
             component: Home,
             children: [{
                     path: 'home',
@@ -33,7 +34,7 @@ export default new Router({
                     component: Home
                 },
                 {
-                    path: '/home/personspace',
+                    path: 'personspace',
                     name: 'personCenter',
                     component: PersonCenter
                 }

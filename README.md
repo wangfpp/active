@@ -24,15 +24,29 @@
 
 - 后端部分
 	- Python  后端的主要开发语言
+		- Tornado 提供WebServer功能
+		- Pymysql 操作数据库
+		- 。。。。。
 
 	- Mysql 数据的存储
+		- 数据库的常用操作 建表 增删改查
+		- 数据库的一般配置
 
 	- Nginx 端口代理与转发
+		- 实现Tornado的多服务端口映射
+		- 代理功能
 
 	- Shell 基本编程
+		- 对Server的启动、停止、重启脚本的编写
 
 	- Deep Learning的基本知识
+		- 了解Deep Learning
 
 - 前端部分
 
 	- Vue
+		- Vue的Router Vuex 
+		- Axios的使用 服务封装及接口的基类编写
+
+- 页面设计部分
+	- 目前正在学习Ant Design的设计模式

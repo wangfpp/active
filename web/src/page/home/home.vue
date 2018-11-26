@@ -1,29 +1,28 @@
 <template>
     <div id="home">
-        用户名:{{this.$store.state.userName ? this.$store.state.userName : this.$store.state.phoneNum}}
+        主页　图片预览时间线
     </div>
 </template>
 
 <script type="text/javascript">
-    export default {
-        name: 'home',
-        data() {
-            return {
+export default {
+    name: 'home',
+    data() {
+        return {
 
-            }
-        },
-        components: {
+        }
+    },
+    components: {
+    },
+    methods: {
 
-        },
-        methods: {
-
-        },
-        mounted(){
-            if (!this.$store.state.userName) {
-                
-            }
+    },
+    mounted(){
+        if (!this.$store.state.userName) {
+            
         }
     }
+}
 </script>
 
 <style lang="sass" scoped>

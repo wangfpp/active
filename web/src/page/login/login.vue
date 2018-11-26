@@ -82,6 +82,7 @@ export default {
                         this.$Message.success({content: 'Success'});
                         this.$store.state.userName = res.user.name;
                         this.$store.state.phoneNum = res.user.phone;
+                        console.log(res.user.name)
                         if (!res.user.name) {
                             this.$router.push({path: '/personspace'});
                         } else {

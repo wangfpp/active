@@ -28,6 +28,7 @@
                             </template>
                             <MenuItem name="3-1" to="usermanage">用户管理</MenuItem>
 							<MenuItem name="3-2" to="personspace">个人中心</MenuItem>
+							<MenuItem name="3-3" to="modifypassword">修改密码</MenuItem>
                         </Submenu>
                     </Menu>
                 </Sider>
@@ -59,7 +60,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style >
+<style lang="scss">
 	#menu{
 		width: 100%;
 		height: calc(100% - 60px);

@@ -21,6 +21,7 @@ import checkbill from '../page/bill/checkbill' // 查看账单
 import addactive from '../page/bill/addbill' //　添加活动
 
 import usermanage from '../page/usermanage/usermanage' //　用户管理
+import modifypassword from '../page/usermanage/modifypassword' //　修改密码
 
 
 
@@ -83,6 +84,11 @@ export default new Router({
                     name: 'usermanage',
                     component: usermanage
                 },
+                {
+                    path: 'modifypassword',
+                    name: 'modifypassword',
+                    component: modifypassword
+                }
             ]
         }
     ]

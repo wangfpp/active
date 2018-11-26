@@ -24,6 +24,7 @@
 import {Form, Input, Icon, FormItem, Button } from 'iview';
 import { validate } from '../../comm/validater';
 import { userServer } from '../../server/user';
+import { mapActions } from 'vuex';
 export default {
     name: 'login',
     data() {
@@ -77,21 +78,21 @@ export default {
         signin(name) {
             this.$refs[name].validate( valid => {
                 if (valid) {
-                    userServer.login(this.userInfo).then(res => {
-                        console.log(res);
-                        this.$Message.success({content: 'Success'});
-                        this.$store.state.userName = res.user.name;
-                        this.$store.state.phoneNum = res.user.phone;
-                        console.log(res.user.name)
-                        if (!res.user.name) {
-                            this.$router.push({path: '/personspace'});
-                        } else {
-                            this.$router.push({path: '/home'});
-                        }
-                    }, err => {
-                        this.$Message.error({content: `${err.data.reason}`});
-                    })
-                    
+                    // userServer.login(this.userInfo).then(res => {
+                    //     console.log(res);
+                    //     this.$Message.success({content: 'Success'});
+                    //     this.$store.state.userName = res.user.name;
+                    //     this.$store.state.phoneNum = res.user.phone;
+                    //     console.log(res.user.name)
+                    //     if (!res.user.name) {
+                    //         this.$router.push({path: '/personspace'});
+                    //     } else {
+                    //         this.$router.push({path: '/home'});
+                    //     }
+                    // }, err => {
+                    //     this.$Message.error({content: `${err.data.reason}`});
+                    // })
+                    this.userinfo(this.userInfo)
                 } else {
                     this.$Message.error('fail');
                 }
@@ -99,10 +100,12 @@ export default {
         },
         toregister() {
             this.$router.push({path: 'register'})
-        }
+        },
+        ...mapActions({
+            'userinfo': 'userInfo'
+        })
     },
     mounted(){
-
     }
 }
 </script>

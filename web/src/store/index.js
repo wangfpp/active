@@ -4,8 +4,6 @@ import { userServer } from '@/server/user';
 Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
-        userName: '',
-        phoneNum: '',
         userInfo: {}
     },
     mutations: {
@@ -16,12 +14,14 @@ export default new Vuex.Store({
     },
     actions: {
         userInfo: ({ commit }, params) => {
-            userServer.login(params).then(res => {
-                console.log(res);
-                commit('setUserInfo', res.user);
-            }, err => {
-                console.log(err);
-            });
+            return new Promise((resolve, reject) => {
+                userServer.login(params).then(res => {
+                    resolve(res);
+                    commit('setUserInfo', res.user);
+                }).catch(err => {
+                    reject(err)
+                });
+            })
         }
     }
 });

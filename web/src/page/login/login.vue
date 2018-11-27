@@ -92,11 +92,28 @@ export default {
                     // }, err => {
                     //     this.$Message.error({content: `${err.data.reason}`});
                     // })
-                    this.userinfo(this.userInfo)
+                    this.userinfo(this.userInfo).then(res => {
+                        this.$Message.success({content: 'Success'});
+                        if (!res.user.name) {
+                            this.$router.push({path: '/personspace'});
+                        } else {
+                            this.$router.push({path: '/home'});
+                        }
+                    }, err => {
+                        console.log(err);
+                        this.$Message.error({content: `${err.data.reason}`});
+                    })
                 } else {
                     this.$Message.error('fail');
                 }
             })
+        },
+        authen() {
+            userServer.authen().then(res => {
+                console.log(res);
+            }, err => {
+                console.log(err);
+            });
         },
         toregister() {
             this.$router.push({path: 'register'})
@@ -106,6 +123,7 @@ export default {
         })
     },
     mounted(){
+        this.authen();
     }
 }
 </script>

@@ -18,7 +18,16 @@ const userServer = {
                 reject(err.response.data);
             });
         })
-    })
+    }),
+    authen: () => {
+        return new Promise((resolve, reject) => {
+            axios.get('/prelogin').then(res => {
+                resolve(res.data);
+            }).catch(err => {
+                reject(err.response.data);
+            });
+        });
+    }
 };
 const b = {
     a() {

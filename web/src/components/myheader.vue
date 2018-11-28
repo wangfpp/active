@@ -1,7 +1,7 @@
 <template>
     <div id="myheader">
         <Icon type="logo-github" size="26"/>
-        {{this.$store.state.userName ? this.$store.state.userName : this.$store.state.phoneNum}}
+        {{this.$store.state.userInfo.name ? this.$store.state.userInfo.name : this.$store.state.userInfo.phone}}
     </div>
 </template>
 

@@ -3,8 +3,8 @@ import Vuex from 'vuex';
 import { userServer } from '@/server/user';
 Vue.use(Vuex);
 export default new Vuex.Store({
-    state: { //　定义需要的状态数据
-        userInfo: {}
+    state: { //　定义需要的状态
+        userInfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : {}
     },
     mutations: {　 // 更新Vuex的状态
         setUserInfo: (state, value) => {

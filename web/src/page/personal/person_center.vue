@@ -25,11 +25,13 @@
                 <Button type="primary" @click="handleSubmit('formInline')">修改</Button>
             </FormItem>
         </Form>
+        <Button　type="primary"　@click="loginout">退出登录</Button>
     </div>
 </template>
 
 <script type="text/javascript">
 import { Form, FormItem, Input, Icon, Button } from 'iview';
+import { userServer } from '../../server/user';
 export default {
     name: 'personcenter',
     data() {
@@ -53,6 +55,14 @@ export default {
     methods: {
         handleSubmit(form) {
 
+        },
+        loginout() {
+            userServer.loginout().then(res => {
+                this.$router.push({path: '/login'})
+            }, err => {
+                console.log(err);
+                this.$Message.error({'content': err.reason});
+            });
         }
     },
     mounted(){

@@ -26,12 +26,26 @@ class BaseHandler(tornado.web.RequestHandler):
     def get_current_user(self):
         return self.get_secure_cookie('user')
 
+class loginout(tornado.web.RequestHandler):
+    def get(self):
+        try:
+            self.clear_cookie('user')
+            self.set_status(200)
+            self.finish({"data": {"code": 1, "desc": '成功退出'}})
+        except:
+            self.set_status(500)
+            self.finish({"data": {"code": 0, "reason": '退出登录失败'}})
+
 class preLogin(BaseHandler):
     def get(self):
         print (self.get_current_user)
-        # if self.get_current_user:
-        #     userInfo = bytesjson(self.get_current_user)
-        #     self.finish({"data": {"code": 1, "user": json.dumps(userInfo)}})
+        if self.get_current_user:
+            userInfo = bytesjson(self.get_current_user)
+            self.set_status(200)
+            self.finish({"data": {"code": 1, "user": json.dumps(userInfo)}})
+        else:
+            self.set_status(403)
+            self.finish({"data": {"code": 0, "reason": '请先登录'}})
 
 class login(tornado.web.RequestHandler): # 用户登录接口
     def post(self):
@@ -103,7 +117,8 @@ def main():
         [
             (r'/login', login),
             (r'/register', register),
-            (r'/prelogin', preLogin)
+            (r'/prelogin', preLogin),
+            (r'/loginout', loginout)
         ], **settings
     )
     app.listen('8097')

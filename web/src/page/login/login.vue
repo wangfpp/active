@@ -108,9 +108,14 @@ export default {
                 }
             })
         },
-        authen() {
+        authen() { // 免密登录
             userServer.authen().then(res => {
                 console.log(res);
+                if (!res.user.name) {
+                    this.$router.push({path: '/personspace'});
+                } else {
+                    this.$router.push({path: '/home'});
+                }
             }, err => {
                 console.log(err);
             });

@@ -23,6 +23,10 @@ module.exports = {
                 target: 'http://172.16.1.110:8097',
                 changeOrigin: true
             },
+            '/loginout': {
+                target: 'http://172.16.1.110:8097',
+                changeOrigin: true
+            },
         },
         // Various Dev Server settings
         host: 'localhost', // can be overwritten by process.env.HOST

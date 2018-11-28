@@ -6,15 +6,20 @@
 
 <script>
 export default {
-  name: 'App'
+	name: 'App',
+	data() {
+		return {
+
+		}
+	}
 }
 </script>
 
 <style>
 @import url('../static/css/reset.css');
 #app {
-  width: 100%;
-  height: 100%;
-  color: #2c3e50;
+	width: 100%;
+	height: 100%;
+	color: #2c3e50;
 }
 </style>

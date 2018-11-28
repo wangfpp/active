@@ -22,11 +22,20 @@ const userServer = {
     authen: () => {
         return new Promise((resolve, reject) => {
             axios.get('/prelogin').then(res => {
-                resolve(res.data);
+                resolve(res.data.data);
             }).catch(err => {
                 reject(err.response.data);
             });
         });
+    },
+    loginout: () => {
+        return new Promise((resolve, reject) => {
+            axios.get('/loginout').then(res => {
+                resolve(res.data.data);
+            }).catch(err => {
+                reject(err.response.data);
+            });
+        })
     }
 };
 const b = {

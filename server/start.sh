@@ -18,12 +18,20 @@ function start_server() { #Shell
         echo 'Start Nginx.....'
         sudo nginx -c /home/wang/work/dinner/server/nginx/conf/nginx.conf
         echo 'Start Server'
-        python3 login.py && python3 user.py
+        python3 user.py &
+        python3 login.py &
     fi
 }
 
 function stop_server() {
+    pid1=$(sudo netstat -anp|grep 8097|awk '{printf $7}'|cut -d/ -f1)
+    pid2=$(sudo netstat -anp|grep 8098|awk '{printf $7}'|cut -d/ -f1)
+    #echo ${pid1} ${pid2}
+    sudo kill -9 ${pid1}&
+    sudo kill -9 ${pid2}&
+    echo 'Kill all port use'
     sudo nginx -c /home/wang/work/dinner/server/nginx/conf/nginx.conf -s stop
+    echo 'Stop Nginx'
 }
 
 
@@ -35,6 +43,7 @@ then
     start_server
 elif [ ${1} == "stop" ]
 then
+    echo 'stop'
     stop_server
 else
     echo '仅支持start stop对服务进行操作'

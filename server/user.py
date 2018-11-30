@@ -7,7 +7,18 @@
 from tornado import web,ioloop
 import uuid
 import pymysql
+import json
 db = pymysql.connect('172.16.1.60', 'root', 'ddkk1212', 'dinner', charset='utf8')
+
+
+def bytesjson(b):
+    if isinstance(b, bytes):
+        string = bytes.decode(b)           
+        userInfo = json.loads(string)
+    else:
+        userInfo = json.loads(b)
+    return userInfo
+
 
 class queryAllUser(web.RequestHandler):
     def get(self):

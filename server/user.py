@@ -39,7 +39,11 @@ class queryAllUser(web.RequestHandler):
 
 class modifyInfo(web.RequestHandler):
     def put(self):
-        print(self.request.body)
+        requestBody = self.request.body
+        modifyParams = bytesjson(requestBody)
+        keys = list(modifyParams.keys())
+        values = list(modifyParams.values())
+        print (keys, values)
 
 
 class Application(web.Application): 

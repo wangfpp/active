@@ -29,7 +29,7 @@ function stop_server() {
     #echo ${pid1} ${pid2}
     sudo kill -9 ${pid1}&
     sudo kill -9 ${pid2}&
-    echo 'Kill all port use'
+    echo 'Kill all port using'
     sudo nginx -c /home/wang/work/dinner/server/nginx/conf/nginx.conf -s stop
     echo 'Stop Nginx'
 }

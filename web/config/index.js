@@ -11,22 +11,22 @@ module.exports = {
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         proxyTable: {
-            '/register': {
-                target: 'http://172.16.1.110:8097',
-                changeOrigin: true
-            },
-            '/login': {
-                target: 'http://172.16.1.110:8097',
-                changeOrigin: true
-            },
-            '/prelogin': {
-                target: 'http://172.16.1.110:8097',
-                changeOrigin: true
-            },
-            '/loginout': {
-                target: 'http://172.16.1.110:8097',
-                changeOrigin: true
-            },
+            // '/register': {
+            //     target: 'http://172.16.1.110:8097',
+            //     changeOrigin: true
+            // },
+            // '/login': {
+            //     target: 'http://172.16.1.110:8097',
+            //     changeOrigin: true
+            // },
+            // '/prelogin': {
+            //     target: 'http://172.16.1.110:8097',
+            //     changeOrigin: true
+            // },
+            // '/loginout': {
+            //     target: 'http://172.16.1.110:8097',
+            //     changeOrigin: true
+            // },
         },
         // Various Dev Server settings
         host: 'localhost', // can be overwritten by process.env.HOST

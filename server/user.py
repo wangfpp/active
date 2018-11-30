@@ -26,12 +26,17 @@ class queryAllUser(web.RequestHandler):
             self.set_status(200)
             self.finish({"data": {"code": 1, "users": data}})
 
+class modifyInfo(web.RequestHandler):
+    def put(self):
+        print(self.request.body)
 
-class Application(web.Application):
+
+class Application(web.Application): 
     def __init__(self, loop):
         self.loop = loop
         handlers = [
-            (r'/queryAllUser', queryAllUser)
+            (r'/queryAllUser', queryAllUser),
+            (r'/modifyInfo', modifyInfo)
         ]
         web.Application.__init__(self, handlers = handlers)
 

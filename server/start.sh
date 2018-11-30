@@ -15,14 +15,10 @@ function start_server() { #Shell
     if isUseingPort '9066';then
         echo 'Nginx is running'
     else
-        pushd nginx
-		nginx -p .
-		popd
         echo 'Start Nginx.....'
-        #sudo nginx -c /home/wang/work/dinner/server/nginx/conf/nginx.conf
+        sudo nginx -c /home/wang/work/dinner/server/nginx/conf/nginx.conf
         echo 'Start Server'
-        python3 login.py
-        python3 user.py
+        python3 login.py && python3 user.py
     fi
 }
 

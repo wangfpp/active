@@ -4,7 +4,7 @@
 # @Last Modified time: 2018-11-29 16:43:43
 # !/sbin/bash
 
-
+export PATH=$PATH:/home/tx1/bin:/home/tk1/bin:/usr/local/sbin
 # Shell 函数 Shell和Javascript一样都是顺序执行函数先声明后使用
 function isUseingPort() {
     sudo netstat -apn | grep '^tcp*'| grep $1 > /dev/null
@@ -15,8 +15,11 @@ function start_server() { #Shell
     if isUseingPort '9066';then
         echo 'Nginx is running'
     else
+        pushd nginx
+		nginx -p .
+		popd
         echo 'Start Nginx.....'
-        sudo nginx -c /home/wang/work/dinner/server/nginx/conf/nginx.conf
+        #sudo nginx -c /home/wang/work/dinner/server/nginx/conf/nginx.conf
         echo 'Start Server'
         python3 login.py
         python3 user.py

@@ -1,7 +1,7 @@
 # @Author: wangfpp
 # @Date:   2018-11-29 16:43:20
 # @Last Modified by:   wangfpp
-# @Last Modified time: 2018-12-07 18:50:09
+# @Last Modified time: 2018-12-07 18:53:45
 # !/sbin/bash
 
 export PATH=$PATH:/home/tx1/bin:/home/tk1/bin:/usr/local/sbin
@@ -16,7 +16,7 @@ function start_server() { #Shell
         echo 'Nginx is running'
     else
         echo 'Start Nginx.....'
-        sudo nginx -c /home/wang/work/dinner/server/nginx/conf/nginx.conf
+        sudo nginx -c /home/wang/work/dinner/server/nginx/conf/nginx.conf #加载nginx.conf 开启Nginx
         echo 'Start Server'
         python3 user.py &
         python3 login.py &

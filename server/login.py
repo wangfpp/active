@@ -1,8 +1,8 @@
 # -*- coding: utf8 -*-
 # @Author: wang
 # @Date:   2018-11-21 15:51:33
-# @Last Modified by:   wang
-# @Last Modified time: 2018-11-21 15:51:49
+# @Last Modified by:   wangfpp
+# @Last Modified time: 2018-12-07 18:47:33
 import tornado.ioloop
 import tornado.web
 import json
@@ -26,7 +26,7 @@ class BaseHandler(tornado.web.RequestHandler):
     def get_current_user(self):
         return self.get_secure_cookie('user')
 
-class loginout(tornado.web.RequestHandler):
+class loginout(tornado.web.RequestHandler): #退出登录 清除Cookie
     def get(self):
         try:
             self.clear_cookie('user')
@@ -36,7 +36,7 @@ class loginout(tornado.web.RequestHandler):
             self.set_status(500)
             self.finish({"data": {"code": 0, "reason": '退出登录失败'}})
 
-class preLogin(BaseHandler):
+class preLogin(BaseHandler): # 预登陆
     def get(self):
         print (self.get_current_user)
         if self.get_current_user:
@@ -88,12 +88,12 @@ class register(tornado.web.RequestHandler): #注册接口
         phone = userInfo['phone']
         password = userInfo['password']
         if (validate.isPhone(phone) or validate.isEmail(phone)):
-            isresitered = db.query("SELECT name from `users` where phone='{}' or email='{}';".format(phone,phone))
+            isresitered = db.query("SELECT name FROM `users` WHERE phone='{}' OR email='{}';".format(phone,phone))
             if isresitered == 0:
                 account_type = 'phone' if (validate.isPhone(phone)) else 'email'
                 try:
                     db.ping(reconnect=True)
-                    sqlexec = 'INSERT into `users`({}, password) VALUES (%s, %s)'.format(account_type)
+                    sqlexec = 'INSERT INTO `users`({}, password) VALUES (%s, %s)'.format(account_type)
                     db.cursor().execute(sqlexec, (phone,password))
                     db.commit()
                     db.close()

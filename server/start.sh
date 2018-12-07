@@ -1,13 +1,13 @@
 # @Author: wangfpp
 # @Date:   2018-11-29 16:43:20
 # @Last Modified by:   wangfpp
-# @Last Modified time: 2018-11-29 16:43:43
+# @Last Modified time: 2018-12-07 18:50:09
 # !/sbin/bash
 
 export PATH=$PATH:/home/tx1/bin:/home/tk1/bin:/usr/local/sbin
 # Shell 函数 Shell和Javascript一样都是顺序执行函数先声明后使用
-function isUseingPort() {
-    sudo netstat -apn | grep '^tcp*'| grep $1 > /dev/null
+function isUseingPort() { #Shell获取参数 用${n}
+    sudo netstat -apn | grep '^tcp*'| grep $1 > /dev/null #/dev/null  把信息扔进null中  
     return $?
 }
 

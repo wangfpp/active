@@ -21,8 +21,12 @@ def bytesjson(b):
 
 
 class queryAllUser(web.RequestHandler):
-    def get(self):
-        sql = "SELECT phone,name,email,isable FROM users"
+    def get(self, user):
+        if self.get_arguments('phone'):
+            phone = self.get_arguments('phone')[0]
+            sql = "SELECT phone,name,email,isable FROM users WHERE phone='{}'".format(phone)
+        else:
+            sql = "SELECT phone,name,email,isable FROM users"
         query = self.application.cursor.execute(sql)
         keyList = ['phone', 'name', 'email', 'isable']
         data = []
@@ -41,16 +45,32 @@ class modifyInfo(web.RequestHandler):
     def put(self):
         requestBody = self.request.body
         modifyParams = bytesjson(requestBody)
-        keys = list(modifyParams.keys())
-        values = list(modifyParams.values())
-        print (keys, values)
+        # keys = list(modifyParams.keys())
+        # values = list(modifyParams.values())
+        string = ''
+        for key, value in modifyParams.items():
+            if key == 'phone':
+                pass
+            else:
+                string += "{}='{}',".format(key, value)
+        if string:
+            string = string[:-1]
+            try:
+                sql = "UPDATE users SET {} WHERE phone='{}'".format(string, modifyParams['phone'])
+                self.application.cursor.execute(sql)
+                self.application.db.commit()
+                self.set_status(200)
+                self.finish({'data': {'code': 1, 'reason': '修改成功'}})
+            except:
+                self.set_status(500)
+                self.finish({'data': {'code': 0, 'reason': '修改失败'}})
 
 
 class Application(web.Application): 
     def __init__(self, loop):
         self.loop = loop
         handlers = [
-            (r'/queryAllUser', queryAllUser),
+            (r'/queryUser(.*)', queryAllUser),
             (r'/modifyInfo', modifyInfo)
         ]
         web.Application.__init__(self, handlers = handlers)

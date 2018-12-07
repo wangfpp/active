@@ -1,6 +1,6 @@
 <template>
     <div id="usermanage">
-        <Table :loading="isLoading" :columns="columns" :data="userList"></Table>
+        <Table :loading="isLoading" :columns="columns" :data="userList" :stripe="true"></Table>
     </div>
 </template>
 

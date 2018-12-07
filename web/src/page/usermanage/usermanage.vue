@@ -40,6 +40,9 @@ export default {
         queryUser(params) {
             userServer.queryUser(params).then(res => {
                 this.isLoading = false;
+                res.users.forEach(el => {
+                    el.isable = el.isable == 1 ? '正常' : '禁用';
+                });
                 this.userList = res.users;
             }, err => {
                 this.$message({type: 'error', content: '获取失败'});
